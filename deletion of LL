@@ -1,0 +1,63 @@
+// Online Java Compiler
+// Use this editor to write, compile and run your Java code online
+class ListNode{
+    int data;
+    ListNode next;
+    
+    ListNode(int data1, ListNode next1){
+        this.data = data1;
+        this.next = next1;
+    }
+    
+    ListNode(int data1){
+        this.data = data1;
+        this.next = null;
+    }
+}
+class Main {
+    private static ListNode convertArr2LL(Integer arr[]){
+        ListNode head = new ListNode(arr[0]);
+        ListNode mover = head;
+        for(int i=1;i<arr.length; i++){
+            ListNode temp = new ListNode(arr[i]);
+            mover.next = temp;
+            mover = temp;
+        }
+        return head;
+    }
+    private static ListNode removerHeadElement(ListNode head){
+        head = head.next;
+        return head;
+    }
+    
+    private static ListNode removerTailElement(ListNode head){
+        if(head == null || head.next == null) return null;
+        ListNode temp = head;
+        if(temp.next.next == null){
+            temp.next = null;
+        }
+        else{
+            temp = temp.next;
+        }
+        return head;
+    }
+    
+    private static void traverseLL (ListNode head){
+        ListNode temp = head;
+        while(temp.next != null){
+            System.out.print(temp.data + " ");
+            temp = temp.next;
+        }
+    }
+    
+    
+    public static void main(String[] args) {
+        System.out.println("lets start the program");
+        Integer arr[] = {12,22,34,2,78,32};
+        ListNode head = convertArr2LL(arr);
+        // ListNode headToremoverHead = removerHeadElement(head);
+        ListNode tailToremoverTail = removerTailElement(head);
+        System.out.println("After removing the head "+tailToremoverTail.data);
+        traverseLL(tailToremoverTail);
+    }
+}
